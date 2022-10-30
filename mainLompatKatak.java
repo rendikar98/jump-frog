@@ -1,5 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Write a description of class mainLompatKatak here.
@@ -13,6 +14,7 @@ public class mainLompatKatak
     static private boolean play;
     static Scanner input = new Scanner(System.in);
     static Scanner in = new Scanner(System.in);
+    static Scanner Enter = new Scanner(System.in);
     static Pemain player;
     static Katak frog;
 
@@ -52,27 +54,30 @@ public class mainLompatKatak
 
     public void lompat()
     {
-        kotakPermainan board = new kotakPermainan(150, 250, 60);
+        kotakPermainan board = new kotakPermainan(250, 400, 80);
 
         try {
             while (frog.getPosisi() <= board.getJumKotak()) {
                 System.out.println("Posisi katak sekarang: " + frog.getPosisi() + '.');
+                System.out.println("Skor sekarang : " + frog.getSkor());
                 System.out.println("1. Loncat satu langkah\n2. Loncat dua langkah");
-                System.out.println("Mau loncat sejauh? ");
+                System.out.println("Mau loncat sejauh? \n");
                 int ans = input.nextInt();
                 if (ans == 1) 
                 {
                     frog.loncatDekat();    
+                    System.out.println(" ");
                 } 
                 else if (ans == 2)
                 {
                     frog.loncatJauh();
+                    System.out.println(" ");
                 }
                 else
                 {
-                    System.out.println("tolong masukkan input yang sesuai.");
+                    System.out.println("tolong masukkan input yang sesuai.\n");
                 }
-                clearScreen();
+                
                 if (frog.getPosisi() == board.getJumKotak()) {
                     break;
                 }
@@ -83,6 +88,12 @@ public class mainLompatKatak
                 } else if (board.contain(frog.getPosisi()) == -1) 
                 {
                     frog.setSkor(frog.getSkor() - 10);
+                }
+
+                try {
+                    TimeUnit.MILLISECONDS.sleep(100);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
                 }
             }  
         } catch (InputMismatchException e) {
@@ -109,7 +120,6 @@ public class mainLompatKatak
     
     static void Enter()
     {
-        Scanner Enter = new Scanner(System.in);
         Enter.nextLine();
     }
 
@@ -118,22 +128,37 @@ public class mainLompatKatak
         mainLompatKatak jumpFrog = new mainLompatKatak();
         while (play)
         {
-            System.out.print("apakah anda ingin bermain? (Y/N)");
+            System.out.println("======Ayo Katak, Lompat!======\n");
+            System.out.println("mari bantu katak untuk menyelesaikan permainan ini");
+            System.out.print("apakah anda ingin bermain? (Y/N)\n");
             jumpFrog.mainkan();
+            clearScreen();
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
             System.out.println("masukkan nama anda untuk main game : ");
             String nama = input.nextLine();
             player.setNama(nama);
-            System.out.println(player.getNama()+", mari mulai permainan!");
+            System.out.println("\n" + player.getNama()+", mari mulai permainan!");
             
+            System.out.println("\n\n\nPRESS ENTER");
             Enter();
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
             clearScreen();
+            System.out.println("PRESS ENTER");
             Enter();
 
             jumpFrog.lompat();
 
             int skorAkhir = frog.getSkor();
             player.setNilai(skorAkhir);
-            System.out.println("Selamat kamu telah menyelesaikan gamenya " + player.getNama() + ", poinmu sebesar " + player.getNilai());
+            System.out.println("Selamat kamu telah menyelesaikan gamenya " + player.getNama() + ", poin yang kamu dapatkan sebesar " + player.getNilai());
             
             try {
                 System.out.println("mau main lagi ga?(y/n)");
@@ -154,6 +179,7 @@ public class mainLompatKatak
                 System.out.println("input tidak valid.");
             }
         } 
+        Enter.close();
     }
 
 }
