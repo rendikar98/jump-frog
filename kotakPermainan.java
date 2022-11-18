@@ -1,25 +1,29 @@
+//import package yang akan dipakai disini
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-/**
- * Write a description of class gameBoard here.
- *
- * @author Rendika Rahmaturrizki
- * @version 2.0
- */
+@ClassPreamble(
+    author = "Rendy",
+    date = "18/11/2022",
+    currentRevision = "3",
+    lastModified = "30/10/2022",
+    lastModifiedBy = "Rendy",
+    reviewers = "Rendy"
+)
 public class kotakPermainan
 {
-    // instance variables - replace the example below with your own
+    //deklarasi atribut
     private int jumlahKotak;
     private int jumlahKoin;
     private int jumlahMonster;
+    //deklarasi array yang dipakai
     private Kotak[] boardGame;
     public int[] acakKoin;
     public int[] acakMonster; 
 
     /**
-     * Constructor for objects of class gameBoard
+     * Constructor untuk objek dari class gameBoard
      */
     public kotakPermainan(int jumKoin, int jumKotak, int jumMonster)
     {
@@ -31,32 +35,15 @@ public class kotakPermainan
         inisialisasiKotak();
     }
 
+    /**
+     * method untuk menghasilkan index acak untuk posisi koin dan monster
+     * yang akan dipakai nanti
+     */
     private void generateAcak()
     {
         acakKoin = new int[jumlahKoin];
         acakMonster = new int[jumlahMonster];
-        // ArrayList<Integer> coinList = new ArrayList<Integer>();
-        // for (int i = 0; i < 250; i++) 
-        // {
-        //     coinList.add(i);
-        // }
-        // int[] acakKoin = new int[coinList.size()];
-        // Collections.shuffle(coinList);
-        // for (int i = 0; i < 250; i++) 
-        // {
-        //     acakKoin[i] = coinList.get(i);
-        // }
-
-        // ArrayList<Integer> monsterList = new ArrayList<Integer>();
-        // for (int i = 0; i < 100; i++) 
-        // {
-        //     monsterList.add(i);
-        // }
-        // int[] acakMonster = new int[monsterList.size()];
-        // for (int i = 0; i < 100; i++) {
-        //     acakMonster[i] = monsterList.get(i);
-        // }
- 
+        
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < jumlahKotak; i++) 
         {
@@ -76,6 +63,9 @@ public class kotakPermainan
         Arrays.sort(acakMonster);
     }
 
+    /**
+     * method untuk inisialisasi membuat kotak permainan
+     */
     private void inisialisasiKotak()
     {
         Koin coin = new Koin(25);
@@ -84,7 +74,6 @@ public class kotakPermainan
         for (int i = 0; i < jumlahKotak; i++) {
             boardGame[i] = new Kotak();
         }
-        
        
         for (int i = 0; i < jumlahKoin; i++)
         {
@@ -97,21 +86,14 @@ public class kotakPermainan
         }
     }
 
+    /**
+     * method untuk mengecek isi di dalam kotak yang ada dalam kotak permainan
+     * @param posisi posisi dari katak
+     * @return identifier atau pengenal dari objek di dalam kotak (koin dan monster)
+     */
     public int contain(int posisi)
     {
         int identifier;
-        // if (boardGame[posisi].isThereKoin()) 
-        // {
-        //     identifier = 1;
-        // }else if (boardGame[posisi].isThereMonster())
-        // {
-        //     identifier = -1;
-        // // }else if (boardGame[posisi].isThereKoin() && boardGame[posisi].isThereMonster()){
-        // //     identifier = 2;
-        // }else {
-        //     identifier = 0;
-        // }
-        // return identifier;
         if (boardGame[posisi].isThereKoin()) 
         {
             boardGame[posisi].getKoin().getNilai();
@@ -129,6 +111,10 @@ public class kotakPermainan
         return identifier;
     }
 
+    /**
+     * method untuk mengembalikan jumlah kotak dalam kotak permainan
+     * @return jumlah kotak
+     */
     public int getJumKotak()
     {
         return jumlahKotak;

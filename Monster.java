@@ -1,48 +1,58 @@
 
-/**
- * Write a description of class Monster here.
- *
- * @author Rendika Rahmaturrizki
- * @version 2.0
- */
-public class Monster
+@ClassPreamble(
+    author = "Rendy",
+    date = "18/11/2022",
+    currentRevision = "3",
+    lastModified = "30/10/2022",
+    lastModifiedBy = "Rendy",
+    reviewers = "Rendy"
+)
+public class Monster implements gameObstacles
 {
-    // instance variables - replace the example below with your own
+    // deklarasi atribut koin
     private int nilai;
     private String nama;
 
     /**
-     * Constructor for objects of class Monster
+     * Constructor untuk objek yang dibuat class Monster
      */
     public Monster()
     {
-        // initialise instance variables
+        // variabel initial dari koin saat dibuat objek monster
         nama = "A";
         nilai = -25;
     }
-
+    //constructor yang ini akan dipanggil saat membuat objek monster
+    //dengan mengisi parameter nilai dan nama
     public Monster(int nilai, String nama){
         this.nama = nama;
-        this.nilai=nilai;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int getNilai()
-    {
-        // put your code here
-        return nilai;
-    }
-
-    public void setNilai(int nilai)
-    {
         this.nilai = nilai;
     }
 
+    /**
+     * method accessor untuk nilai dari class monster
+     * @return nilai dari monster
+     */
+    @Override
+    public int getNilai()
+    {
+        return nilai;
+    }
+
+    /**
+     * method  mutator untuk mengubah nilai dari monster
+     * @param nilai nilai baru dari monster
+     */
+    @Override
+    public void setNilai(int nilaiBaru)
+    {
+        this.nilai = nilaiBaru;
+    }
+
+    /**
+     * method accessor untuk nama dari class monster
+     * @return nama dari monster
+     */
     public String getNama()
     {
         return nama;

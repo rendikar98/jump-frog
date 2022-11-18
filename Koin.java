@@ -1,30 +1,28 @@
 
-/**
- * Write a description of class Coin here.
- *
- * @author Rendika Rahmaturrizki
- * @version 2.0
- */
-public class Koin
+@ClassPreamble(
+    author = "Rendy",
+    date = "18/11/2022",
+    currentRevision = "3",
+    lastModified = "30/10/2022",
+    lastModifiedBy = "Rendy",
+    reviewers = "Rendy"
+)
+public class Koin implements gameObstacles
 {
-    // instance variables - replace the example below with your own
+    //deklarasi atribut koin
     private int nilai;
 
     /**
-     * Constructor for objects of class Coin
+     * Constructor untuk object dari class Coin
      */
     public Koin()
     {
-        // initialise instance variables
+        // variabel initial dari koin saat dibuat objek koin
         nilai = 0;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+    //constructor yang ini akan dipanggil saat membuat objek koin
+    //dengan mengisi parameter nilai
     public Koin(int nilai)
     {
         // put your code here
@@ -32,13 +30,24 @@ public class Koin
         
     }
     
+    /**
+     * method accessor untuk nilai dari koin
+     * @return nilai dari koin
+     */
+    @Override
     public int getNilai()
     {
         return nilai;
     }
     
-    public void setNilai (int nilaibaru)
+    /**
+     * method mutator untuk nilai dari koin
+     * @param nilaibaru nilai baru yang di set pada objek koin
+     */
+    @Override
+    public void setNilai (int nilaiBaru)
     {
-        this.nilai = nilaibaru;    
+        this.nilai = nilaiBaru;    
     }
+
 }

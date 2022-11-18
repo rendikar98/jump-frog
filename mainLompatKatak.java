@@ -1,32 +1,40 @@
+// import package yang dipakai disini
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Write a description of class mainLompatKatak here.
- *
- * @author Rendika Rahmaturrizki
- * @version 2.0
- */
+@ClassPreamble(
+    author = "Rendy",
+    date = "18/11/2022",
+    currentRevision = "3",
+    lastModified = "30/10/2022",
+    lastModifiedBy = "Rendy",
+    reviewers = "Rendy"
+)
 public class mainLompatKatak
 {
-    // instance variables - replace the example below with your own
+    // deklarasi atribut
     static private boolean play;
+    // deklarasi scanner untuk input
     static Scanner input = new Scanner(System.in);
     static Scanner in = new Scanner(System.in);
     static Scanner Enter = new Scanner(System.in);
+    // deklarasi objek
     static Pemain player;
     static Katak frog;
 
     /**
-     * Constructor for objects of class mainLompatKatak
+     * Constructor untuk objek dari mainLompatKatak
      */
     public mainLompatKatak()
     {
-        // initialise instance variables
+        // variable initial
         play = true;
     }
 
+    /**
+     * method untuk memulai game dengan mengubah atribut play
+     */
     public void mainkan()
     {
         frog = new Katak();
@@ -52,6 +60,9 @@ public class mainLompatKatak
         }
     }
 
+    /**
+     * method untuk jika ingin melompat dan memberikan skor nya
+     */
     public void lompat()
     {
         kotakPermainan board = new kotakPermainan(250, 400, 80);
@@ -76,6 +87,7 @@ public class mainLompatKatak
                 else
                 {
                     System.out.println("tolong masukkan input yang sesuai.\n");
+                    continue;
                 }
                 
                 if (frog.getPosisi() == board.getJumKotak()) {
@@ -97,12 +109,13 @@ public class mainLompatKatak
                 }
             }  
         } catch (InputMismatchException e) {
-            System.out.println("input tidak valid.");
+            System.err.println("input tidak valid.");
         }
-
     }
     
-    
+    /**
+     * function untuk clear screen saat game berjalan
+     */
     static void clearScreen()
     {
         try {
@@ -118,11 +131,18 @@ public class mainLompatKatak
         }
     }
     
+    /**
+     * function untuk menerima karakter enter saat game berjalan
+     */
     static void Enter()
     {
         Enter.nextLine();
     }
 
+    /**
+     * method main untuk menjalankan gamenya
+     * @param args
+     */
     public static void main(String args[])
     {
         mainLompatKatak jumpFrog = new mainLompatKatak();
